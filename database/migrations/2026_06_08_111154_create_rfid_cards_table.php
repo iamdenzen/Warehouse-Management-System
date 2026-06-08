@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('rfid_cards', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->string('uid_hash');
+            $table->string('uid_last4', 4);
+            $table->boolean('active')
+                ->default(true);
+            $table->timestamp('issued_at')
+                ->nullable();
             $table->timestamps();
+            $table->index('uid_hash');
         });
     }
 

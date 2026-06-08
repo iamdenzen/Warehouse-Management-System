@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('shelf_slots', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('shelf_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->string('label');
+            $table->unsignedInteger('led_from');
+            $table->unsignedInteger('led_to');
+            $table->string('oled_channel_front');
+            $table->string('oled_channel_back');
+            $table->foreignId('current_product_id')
+                ->nullable()
+                ->constrained('products')
+                ->nullOnDelete();
             $table->timestamps();
         });
     }

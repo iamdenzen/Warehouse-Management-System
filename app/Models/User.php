@@ -56,4 +56,9 @@ class User extends Authenticatable implements FilamentUser
         return $this->active
             && $this->role === UserRole::ADMIN;
     }
+
+    public function rfidCards()
+    {
+        return $this->hasMany(RfidCard::class);
+    }
 }

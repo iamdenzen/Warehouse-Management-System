@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('delivery_note_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('delivery_note_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('product_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+            $table->string('product_sku');
+            $table->unsignedInteger('quantity');
+            $table->decimal('expected_weight_grams', 10, 2);
             $table->timestamps();
         });
     }

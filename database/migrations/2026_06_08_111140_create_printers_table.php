@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('printers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('printnode_printer_id');
+            $table->boolean('active')
+                ->default(true);
             $table->timestamps();
         });
     }

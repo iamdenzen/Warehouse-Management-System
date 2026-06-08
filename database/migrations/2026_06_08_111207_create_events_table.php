@@ -13,7 +13,19 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+            $table->foreignId('station_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
+            $table->string('type');
+            $table->json('payload')
+                ->nullable();
             $table->timestamps();
+            $table->index('type');
         });
     }
 
